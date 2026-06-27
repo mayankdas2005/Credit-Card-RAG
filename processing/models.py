@@ -18,3 +18,14 @@ class ChunkFeatureExtractor(BaseModel):
     benefit_type: str = Field("general", description="Must be one of: lounge_access, cashback, reward_multiplier, fees_and_charges, legal_terms")
     spend_category: str = Field("general", description="Main spend vertical: travel, dining, fuel, shopping, utilities, general")
     partner_merchant: str = Field("none", description="Co-branded partner name (e.g., Marriott, Swiggy) or 'none'")
+
+
+class BatchItemClassification(BaseModel):
+    paragraph_index: int = Field(..., description="The index of the paragraph being classified.")
+    applicable_card_id: str = Field(..., description="The card ID from the provided list, or 'generic'.")
+    benefit_type: str = Field("general", description="lounge_access, cashback, reward_multiplier, fees_and_charges, legal_terms")
+    spend_category: str = Field("general", description="travel, dining, fuel, shopping, utilities, general")
+    partner_merchant: str = Field("none", description="Co-branded partner name or 'none'")
+
+class BatchClassificationResponse(BaseModel):
+    results: List[BatchItemClassification]
