@@ -24,6 +24,8 @@ def extract_markdown_from_pdf(pdf_path: str, md_path: str):
     with open(save_path, "w", encoding="utf-8") as f:
         f.write(cleaned_md)
     
+    return cleaned_md
+    
 
 
 
