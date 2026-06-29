@@ -3,13 +3,21 @@ from typing import List
 
 
 class CardIdentity(BaseModel):
-    card_id: str = Field(..., description="Unique URL-safe slug, e.g., 'hdfc-regalia-gold'")
+    card_id: str = Field(..., description="Unique URL-safe slug, e.g., 'bank-card-slug'")
     card_name: str = Field(..., description="Full official name of the card")
     joining_fee: float = Field(0.0, description="Joining fee. Use 0.0 if free or not found.")
     annual_fee: float = Field(0.0, description="Annual renewal fee. Use 0.0 if not found.")
     fee_waiver_threshold: float = Field(0.0, description="Spend threshold required to waive the annual fee. Use 0.0 if none.")
 
-class LocalCardDiscoveries(BaseModel):
+class BankAndCardCatalog(BaseModel):
+    bank_name: str = Field(
+        ..., 
+        description="Official name of the bank found in the text, e.g., 'Generic Bank'"
+    )
+    bank_id: str = Field(
+        ..., 
+        description="A clean, lowercase url-safe slug based on the bank name, e.g., 'generic-bank'"
+    )
     cards_found: List[CardIdentity] = Field(..., description="List of all credit cards found in this section.")
 
 
