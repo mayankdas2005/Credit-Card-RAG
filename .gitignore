@@ -1,0 +1,8 @@
+.env
+.venv
+__pycache__
+*/__pycache__/*
+data/*
+credit_card_rag_db/*
+cache/ingestion_cache.json
+
